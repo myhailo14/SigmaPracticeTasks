@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Task2.GiftParts.Toys" Collapsed="true">
+    <Position X="14.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACBAAAAAAAAAAAAAAAQAAAACAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GiftParts\Toys.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.GiftParts.Sweets" Collapsed="true">
+    <Position X="12.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>GiftParts\Sweets.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.GiftParts.Wishes">
+    <Position X="11" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAEAAAAABAA=</HashCode>
+      <FileName>GiftParts\Wishes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.GiftParts.Gift">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAQAEAIAAAAAAIAAAAAAABAAAAAAEAAA=</HashCode>
+      <FileName>GiftParts\Gift.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.GiftBuilders.GiftBuilder" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAhAAQAAAAAAAAAAAQAAAAAAAAEAAQIAAE=</HashCode>
+      <FileName>GiftBuilders\GiftBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.GiftBuilders.BoyGiftBuilder" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAQAAAAAAAAAAAQAAAAAAAAAAAAIAAE=</HashCode>
+      <FileName>GiftBuilders\BoyGiftBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.GiftBuilders.GirlGiftBuilder" Collapsed="true">
+    <Position X="6.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAQAAAAAAAAAAAQAAAAAAAAAAAAIAAE=</HashCode>
+      <FileName>GiftBuilders\GirlGiftBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.GiftBuilders.BadChildGiftBuilder" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAQAAAAAAAAAAAQAAAAAAAAAAAAIAAE=</HashCode>
+      <FileName>GiftBuilders\BadChildGiftBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.GiftBuilders.BuildGift">
+    <Position X="4.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAGAAQAAAA=</HashCode>
+      <FileName>GiftBuilders\BuildGift.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.Mykolai" Collapsed="true">
+    <Position X="9.25" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAQAAgABAQAAEAQAAAAAAAgAAAAQAAAUAAgBBEAAAA=</HashCode>
+      <FileName>Persons\Mykolai.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Task2.Child" Collapsed="true">
+    <Position X="12.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAgAAAAAAAQAEEAAABAAQAAAAgAAAAAQAEAAAAAAA=</HashCode>
+      <FileName>Persons\Child.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

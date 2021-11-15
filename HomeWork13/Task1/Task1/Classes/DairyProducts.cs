@@ -1,0 +1,60 @@
+using System.Text;
+
+namespace Task1.Classes
+{
+
+    public class DairyProducts : Product
+    {
+
+        
+
+        public DairyProducts(string name, double price, double weight, int expiration, DateTime madeDate)
+            : base(name, price, weight, expiration, madeDate)
+        {
+        }
+        public DairyProducts(string s) : base(s) { }
+
+        public override void ChangePrice(double diff)
+        {
+            if ((diff.CompareTo(-1d) == -1) || (diff.CompareTo(1d) == 1))
+            {
+                throw new ArgumentException("Difference must be a number between -1 and 1");
+            }
+            base.ChangePrice(diff);
+            if (Expiration < 10)
+            {
+                base.ChangePrice(-0.3);
+
+            }
+            else if (Expiration is >= 10 and < 20)
+            {
+                base.ChangePrice(-0.1);
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append(base.ToString());
+            result.Append("Expiration date: " + Expiration.ToString() + "\n");
+            return result.ToString();
+        }
+        public override int GetHashCode()
+        {
+            return (base.GetHashCode() << 2) ^ Expiration;
+        }
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !(this.GetType() == obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                DairyProducts temp = obj as DairyProducts;
+                return (base.Equals((Product)obj) && (this.Expiration == temp.Expiration));
+            }
+        }
+    }
+}
+

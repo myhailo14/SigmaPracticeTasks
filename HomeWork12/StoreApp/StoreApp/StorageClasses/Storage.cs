@@ -1,4 +1,4 @@
-﻿using System.Reflection.Metadata;
+using System.Reflection.Metadata;
 using System.Security.Principal;
 using StoreApp.Interfaces;
 using StoreApp.UserClasses;
@@ -11,18 +11,17 @@ namespace StoreApp.StorageClasses;
 
 public abstract class ProductHandlerDecorator : IProductHandler
 {
-    protected IProductHandler _productHandler;
+    protected IProductHandler ProductHandler;
 
     protected ProductHandlerDecorator(IProductHandler productHandler)
     {
-        _productHandler = productHandler;
+        ProductHandler = productHandler;
     }
 
     public abstract bool AddProduct(Product product);
     public abstract bool AddProducts(List<Product> products);
     public abstract bool RemoveProduct(Product product);
     public abstract bool RemoveProduct(List<Product> products);
-    public abstract StorageNorms getStorageNorms();
 }
 
 interface ILogger
@@ -61,37 +60,40 @@ class AddRemoveWithLog : ProductHandlerDecorator
 {
     public AddRemoveWithLog(IProductHandler productHandler) : base(productHandler)
     {
+
     }
 
     public override bool AddProduct(Product product)
     {
         ILogger logger = new Logger();
-        var norms = _productHandler.getStorageNorms();
+        
+        var norms = (ProductHandler as IStorageNorms).GetStorageNorms();
         var typeProd = product.GetType();
         if (product.IsValid == true)
         {
-            if (product is Product)
-            {
-                if (norms.ProductCurrent + 1 < norms.ProductMax)
-                    _productHandler.AddProduct(product);
-                else
-                    return false;
-            }
-
             if (product is Meat)
             {
                 if (norms.MeatCurrent + 1 < norms.MeatMax)
-                    _productHandler.AddProduct(product);
+                    ProductHandler.AddProduct(product);
                 else
                     return false;
             }
             if (product is Dairy)
             {
                 if (norms.DairyCurrent + 1 < norms.DairyMax)
-                    _productHandler.AddProduct(product);
+                    ProductHandler.AddProduct(product);
                 else
                     return false;
             }
+            if (product is Product)
+            {
+                if (norms.ProductCurrent + 1 < norms.ProductMax)
+                    ProductHandler.AddProduct(product);
+                else
+                    return false;
+            }
+
+            
         }
         else
         {
@@ -116,7 +118,7 @@ class AddRemoveWithLog : ProductHandlerDecorator
     public override bool RemoveProduct(Product product)
     {
         ILogger logger = new Logger();
-        if (product.IsValid != false) return _productHandler.RemoveProduct(product);
+        if (product.IsValid != false) return ProductHandler.RemoveProduct(product);
         logger.LogExpiredProduct(product);
         return false;
     }
@@ -131,45 +133,15 @@ class AddRemoveWithLog : ProductHandlerDecorator
                 logger.LogExpiredProduct(product);
                 continue;
             }
-            _productHandler.RemoveProduct(product);
+            ProductHandler.RemoveProduct(product);
         }
 
         return true;
     }
-
-    public override StorageNorms getStorageNorms()
-    {
-        return _productHandler.getStorageNorms();
-    }
 }
 #endregion
 
-public class StorageNorms
-{
-    public int ProductMax { get; private set; } = 500;
-    public int MeatMax { get; private set; } = 100;
-    public int DairyMax { get; private set; } = 100;
-
-    public int ProductCurrent { get; private set; } = 0;
-    public int MeatCurrent { get; private set; } = 0;
-    public int DairyCurrent { get; private set; } = 0;
-
-    public bool WillFitProduct()
-    {
-        return ProductCurrent + 1 <= ProductMax;
-    }
-    public bool WillFitMeat()
-    {
-        return MeatCurrent + 1 <= MeatMax;
-    }
-
-    public bool WillFitDairy()
-    {
-        return DairyCurrent + 1 <= DairyMax;
-    }
-
-}
-class Storage : IStorageHandler, IProductHandler
+class Storage : IStorageHandler, IProductHandler, IStorageNorms
 {
     private StorageNorms _storageNorms = new StorageNorms();
     private List<Product> _productList = new List<Product>();
@@ -182,6 +154,7 @@ class Storage : IStorageHandler, IProductHandler
         foreach (var product in _productList.FindAll(item => item.IsValid == false))
         {
             _productList.Remove(product);
+            
         }
 
         return removedList;
@@ -210,6 +183,11 @@ class Storage : IStorageHandler, IProductHandler
     public List<Product> SearchMeat()
     {
         return _productList.FindAll(item => item is Meat);
+    }
+
+    public List<Product> GetProductsList()
+    {
+        return _productList;
     }
 
     public bool AddProduct(Product product)
@@ -256,7 +234,7 @@ class Storage : IStorageHandler, IProductHandler
         }
     }
 
-    public StorageNorms getStorageNorms()
+    public StorageNorms GetStorageNorms()
     {
         return _storageNorms;
 

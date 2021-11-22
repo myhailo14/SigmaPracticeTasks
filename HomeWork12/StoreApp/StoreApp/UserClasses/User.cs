@@ -8,10 +8,34 @@ class User : IUserHandler
     protected string _name;
     protected string _surname;
     protected string _phoneNumber;
-    protected DateOnly _brithDate;
+    protected DateOnly _birthDate;
+    public string Email;
     protected string _login;
     protected string _password;
 
+    public User(string email)
+    {
+        _id = 0;
+        _name = "Test";
+        _surname = "Test";
+        _phoneNumber = "+380999222222";
+        Email = "mykhailo.vovkanych@gmail.com";
+        _birthDate = new DateOnly(2000,1,1);
+        _login = "TestUser1";
+        _password = "1111";
+    }
+
+    public User(long id, string name, string surname, string phoneNumber, DateOnly birthDate, string login, string password, string email)
+    {
+        _id = id;
+        _name = name;
+        _surname = surname;
+        _phoneNumber = phoneNumber;
+        _birthDate = birthDate;
+        _login = login;
+        _password = password;
+        Email = email;
+    }
 
     public bool ChangePassword(string oldPassword, string newPassword)
     {

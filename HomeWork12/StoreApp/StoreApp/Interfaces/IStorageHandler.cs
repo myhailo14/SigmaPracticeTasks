@@ -3,6 +3,7 @@ using StoreApp.UserClasses;
 
 namespace StoreApp.Interfaces;
 
+
 public interface IStorageHandler
 {
     List<Product> RemoveExpired();
@@ -11,5 +12,6 @@ public interface IStorageHandler
     List<Product> SearchByWeight(double lowerWeight, double upperWeight);
     List<Product> SearchDairy();
     List<Product> SearchMeat();
+    List<Product> GetProductsList();
 
 }

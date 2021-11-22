@@ -1,4 +1,5 @@
 ﻿using StoreApp.Enums;
+using StoreApp.StorageClasses;
 using StoreApp.UserClasses;
 
 namespace StoreApp.Interfaces;

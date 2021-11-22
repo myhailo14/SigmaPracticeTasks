@@ -97,7 +97,7 @@ namespace Task.Classes
         {
             if (!string.IsNullOrEmpty(name))
             {
-                if (removeAll == true)
+                if (removeAll)
                     Assortment.RemoveAll(item => item.Name == name);
                 else
                     Assortment.RemoveAt(Assortment.FindIndex(item => item.Name == name));
@@ -248,13 +248,13 @@ namespace Task.Classes
 
         public List<Product> GetExpiredProducts()
         {
-            var result = Assortment.Where(item => item.IsValid == false).ToList();
+            var result = Assortment.Where(item => !item.IsValid).ToList();
             return result;
         }
 
         public void RemoveExpiredDiary(string path)
         {
-            var expired = Assortment.OfType<DairyProducts>().Where(item => item.IsValid == false).ToList();
+            var expired = Assortment.OfType<DairyProducts>().Where(item => !item.IsValid).ToList();
             expired.ForEach(item => Assortment.Remove(item));
 
             using (StreamWriter file = new StreamWriter(path))

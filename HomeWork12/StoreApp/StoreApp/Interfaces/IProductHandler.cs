@@ -9,5 +9,5 @@ public interface IProductHandler
     bool AddProducts(List<Product> products);
     bool RemoveProduct(Product product);
     bool RemoveProduct(List<Product> products);
-    StorageNorms getStorageNorms();
+    
 }

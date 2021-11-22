@@ -1,4 +1,5 @@
 ﻿using System;
+using StoreApp.StorageClasses;
 
 namespace StoreApp
 {
@@ -6,7 +7,8 @@ namespace StoreApp
     {
         public static void Main(string[] args)
         {
-
+            Store store = Store.Instance;
+    
         }
     }
 

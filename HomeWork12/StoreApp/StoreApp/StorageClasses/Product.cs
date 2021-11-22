@@ -37,7 +37,7 @@ public class Product
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.Append($" Name: {_name}");
+        sb.Append($" _name: {_name}");
         sb.Append($" Price: {_price}");
         sb.Append($" Weight: {_weight}");
         sb.Append($" Expiration: {_expirationTerm}");

@@ -91,7 +91,7 @@ class AdminMediator : IMediator
             _outputInstance("There is no user with this email");
         else
             instance.ChangeClientStatus(instance.FindUser(_admin, email), newStatus);
-        }
+    }
 
     public void SendClientRemoveAction()
     {
@@ -132,6 +132,63 @@ class ModeratorMediator
 
 class ClientMediator
 {
+    private Client _client;
+    private Func<string> _inputInstance;
+    private Action<string> _outputInstance;
+    private Action _clearOutput;
+    public ClientMediator(Client client, Func<string> inputInstance, Action<string> outputInstance, Action clearOutput)
+    {
+        _client = client;
+        _inputInstance = inputInstance;
+        _outputInstance = outputInstance;
+        _clearOutput = clearOutput;
+    }
+
+    public void SendMessage(int requestId, out bool isExit, out IPage? nextPage)
+    {
+        isExit = false;
+        nextPage = null;
+        if (!CheckAction(requestId))
+        {
+            return;
+        }
+
+        switch (requestId)
+        {
+            case 1:
+              return;
+        }
+
+        IPage next = new WelcomePage();
+
+    }
+
+    public void ShowActions()
+    {
+        _outputInstance("1. See assortment\n");
+        _outputInstance("2. See basket\n");
+        _outputInstance("3. Create order from basket\n");
+        _outputInstance("4. Clear basket\n");
+        _outputInstance("5. Change password\n");
+        _outputInstance("6. Log out\n");
+    }
+
+    public bool CheckAction(int requestId)
+    {
+        return requestId is > 0 and < 7;
+    }
+
+    public void SendAssortmentRequest()
+    {
+        _outputInstance("Assortment:");
+        _outputInstance(Store.Instance.GetProductList().ToString());
+    }
+
+    public void SendBasketRequest()
+    {
+        _outputInstance("Your basket:");
+        _outputInstance(_client.SeeBasket());
+    }
 
 }
 
@@ -186,13 +243,23 @@ class StoreMediator
     {
         _outputInstance("1. Register\n");
         _outputInstance("2. _login as client\n");
-        _outputInstance("3. _login as admin\n");
+        _outputInstance("3. _login as client\n");
         _outputInstance("4. _login as moderator\n");
         _outputInstance("5. Exit\n");
     }
 
     public void SendRegisterAction()
     {
+        _outputInstance("Registering new user:");
+        _outputInstance(" Enter name: ");
+        _outputInstance(" Enter surname: ");
+        _outputInstance(" Enter phone number:");
+        _outputInstance(" Enter e-mail:");
+        _outputInstance(" Enter birth date:");
+        _outputInstance(" Enter login:");
+        _outputInstance(" Enter password:");
+        _outputInstance("");
+        _outputInstance("");
 
     }
 

@@ -59,7 +59,6 @@ class AdminPage : IPage
                 break;
             }
         }
-
         return nextPage;
     }
 

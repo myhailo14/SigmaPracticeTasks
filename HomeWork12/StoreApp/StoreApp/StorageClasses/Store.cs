@@ -1,4 +1,5 @@
 ﻿using System.Dynamic;
+using System.Security.Cryptography.X509Certificates;
 using StoreApp.Enums;
 using StoreApp.UserClasses;
 
@@ -47,7 +48,7 @@ class Store
     {
         return _discountList.Remove(discount);
     }
-    
+
     //user operations
     public void RegisterNewUser(User newUser)
     {
@@ -87,6 +88,17 @@ class Store
     {
         if (client.GetType() != typeof(Client)) return;
         _clientBase.ChangeStatus(client as Client, status);
+    }
+
+    public bool Login(User? sender, string login, string password)
+    {
+        if (_clientBase.GetClient(login) != null
+            || _adminList.Find(x => x.Login == login) != null
+            || _moderatorList.Find(x => x.Login == login) != null)
+        {
+            return true;
+        }
+        return false;
     }
 
     // storage operations

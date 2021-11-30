@@ -1,5 +1,6 @@
 using System.Reflection.Metadata;
 using System.Security.Principal;
+using System.Text;
 using StoreApp.Interfaces;
 using StoreApp.UserClasses;
 
@@ -238,5 +239,16 @@ class Storage : IStorageHandler, IProductHandler, IStorageNorms
     {
         return _storageNorms;
 
+    }
+
+    public override string ToString()
+    {
+        var sb = new StringBuilder();
+        int i = 0;
+        foreach (var product in _productList)
+        {
+            sb.Append($"{i++}) {product.ToString()}\n");
+        }
+        return sb.ToString();
     }
 }

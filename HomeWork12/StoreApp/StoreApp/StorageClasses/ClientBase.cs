@@ -15,9 +15,19 @@ class ClientBase : IClientBase
 {
     private List<Client> _clientList = new List<Client>();
 
+    //if string contains email - searching using email
+    // else - using login
     public Client? GetClient(string email)
     {
-       return _clientList.Find(c => c.Email.Equals(email));
+        //ADD PATTERN MATCH FOR EMAIL
+        if (email.Contains("@"))
+        {
+            return _clientList.Find(c => c.Email.Equals(email));
+        }
+        else
+        {
+            return _clientList.Find(x => x.Name == email);
+        }
     }
 
     public Client? GetClient(Client client)

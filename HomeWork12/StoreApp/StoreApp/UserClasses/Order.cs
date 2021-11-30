@@ -1,12 +1,14 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 using StoreApp.Interfaces;
 using StoreApp.StorageClasses;
 
 namespace StoreApp.UserClasses;
 
-class Basket : IProductHandler
+class Basket : IProductHandler, IEnumerable, IEnumerator
 {
     private List<Product> _products;
+    private int _position = -1;
     public bool AddProduct(Product product)
     {
         _products.Add(product);
@@ -54,7 +56,25 @@ class Basket : IProductHandler
         }
         return sb.ToString();
     }
+
+    public IEnumerator GetEnumerator()
+    {
+        return this;
+    }
+
+    public bool MoveNext()
+    {
+        return _position++ < _products.Count;
+    }
+
+    public void Reset()
+    {
+        _position = -1;
+    }
+
+    public object Current => _products[_position];
 }
+
 class Order
 {
     private long _id;
@@ -65,6 +85,10 @@ class Order
 
     void ConfirmOrder()
     {
-
+        foreach (Product product in _basket)
+        {
+            Store.Instance.RemoveProduct(product);
+        }
+        Store.Instance.RemoveProduct();
     }
 }

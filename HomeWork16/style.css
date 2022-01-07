@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
+* {box-sizing: border-box;}
+header {
+    background-color: #2F4F4F; 
+    grid-area: h;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    min-width: 200px;
+}
+footer{
+    background-color: rgb(24, 131, 58); 
+    grid-area: f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+main{
+    background-color: #4267b2; 
+    grid-area: m;
+    padding: 1em 2em;
+    font-size: 0.8em;
+}
+body{
+    font-family: 'Lato', sans-serif;
+    margin:0;
+    width: 100vw;
+    height: 100vh;
+    color: #ddd;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:   "h"
+                           "m"
+                           "f";
+}
+aside{
+    display: none;
+}
+@media screen and (min-width: 720px){
+  body {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:   "h m m"
+                           "h m m"
+                           "h f f";
+  }
+  aside{
+      display: block;
+  }
+}

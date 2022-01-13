@@ -1,0 +1,37 @@
+[
+  {
+    "Name": "Lviv",
+    "Population": 720000,
+    "Area": 149
+  },
+  {
+    "Name": "Kyiv",
+    "Population": 2884000,
+    "Area": 839
+  },
+  {
+    "Name": "London",
+    "Population": 8982000,
+    "Area": 1572
+  },
+  {
+    "Name": "Berlin",
+    "Population": 3645000,
+    "Area": 891
+  },
+  {
+    "Name": "Krakiv",
+    "Population": 766000,
+    "Area": 327
+  },
+  {
+    "Name": "Tokyo",
+    "Population": 13960000,
+    "Area": 2194
+  },
+  {
+    "Name": "Washington",
+    "Population": 692000,
+    "Area": 177
+  }
+]
